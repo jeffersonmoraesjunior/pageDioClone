@@ -8,10 +8,11 @@ import {
   Menu,
   MenuRight,
   Row,
+  UserPicture,
   Wrapper,
 } from "./styles";
 
-const Header = () => {
+const Header = ({ autenticado }) => {
   return (
     <>
       {/*Wrapper = envolve todo o cabeçalho*/}
@@ -20,16 +21,28 @@ const Header = () => {
         <Container>
           <Row>
             <img src={logo} alt="Logo da Dio" />
-            <BuscarInputContainer>
-              <Input placeholder="Buscar..." />
-            </BuscarInputContainer>
-            <Menu>Live Code</Menu>
-            <Menu>Global</Menu>
+            {autenticado ? (
+              <>
+                <BuscarInputContainer>
+                  <Input placeholder="Buscar..." />
+                </BuscarInputContainer>
+                <Menu>Live Code</Menu>
+                <Menu>Global</Menu>
+              </>
+            ) : null}
           </Row>
           <Row>
-            <MenuRight href="#">Home</MenuRight>
-            <Button title="Entrar" />
-            <Button title="Cadastrar" />
+            {autenticado ? (
+              <>
+                <UserPicture src="https://avatars.githubusercontent.com/u/55846912?s=400&u=e7a72698071dc70b088143c1c8e0f4aed8cb6263&v=4" />
+              </>
+            ) : (
+              <>
+                <MenuRight href="#">Home</MenuRight>
+                <Button title="Entrar" />
+                <Button title="Cadastrar" />
+              </>
+            )}
           </Row>
         </Container>
       </Wrapper>
